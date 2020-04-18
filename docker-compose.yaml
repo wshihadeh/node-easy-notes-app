@@ -19,7 +19,7 @@ services:
      - mongo-db:/data/db
 
   easy-notes:
-    image: node-easy-notes-app:latest
+    image: wshihadeh/node-easy-notes-app:latest
     restart: always
     networks:
       - nodeJsNet
