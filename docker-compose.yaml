@@ -1,0 +1,30 @@
+version: '3.7'
+
+volumes:
+  mongo-db:
+
+networks:
+  nodeJsNet:
+    external: false
+    name: 'nodeJsNet'
+
+services:
+
+  mongodb:
+    image: mongo:4.2
+    restart: always
+    networks:
+      - nodeJsNet
+    volumes:
+     - mongo-db:/data/db
+
+  easy-notes:
+    image: node-easy-notes-app:latest
+    restart: always
+    networks:
+      - nodeJsNet
+    environment:
+      MONGO_URL: 'mongodb://mongodb:27017/easy-notes'
+    ports:
+      - 8080:3000
+
